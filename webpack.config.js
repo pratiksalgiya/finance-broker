@@ -2,13 +2,13 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const outputDirectory = 'public/js';
+const outputDirectory = 'dist';
 
 module.exports = {
     entry: './src/client/index.tsx',
     output: {
         path: path.join(__dirname, outputDirectory),
-        filename: 'app.js',
+        filename: 'bundle.js'
     },
     module: {
         rules: [{
@@ -44,7 +44,7 @@ module.exports = {
         port: 3000,
         open: true,
         proxy: {
-            '/api': 'http://localhost:8080'
+            '/api': 'http://localhost:8081'
         }
     },
     plugins: [

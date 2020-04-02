@@ -2,12 +2,12 @@
   "name": "finance-broker",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/server.js",
+  "main": "src/server/server.js",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "npm run build && node dist/server.js",
+    "start": "npm run build && node src/server/index.js",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
-    "server": "nodemon dist/server.js",
+    "server": "nodemon src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],

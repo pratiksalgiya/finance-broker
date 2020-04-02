@@ -1,10 +1,10 @@
-import * as express from 'express';
-import DB from './db';
+const express = require('express');
+const DB = require('./db/index.js');
 
 const router = express.Router();
 
 router.get('/api/hello', (req, res, next) => {
-    res.json('World');
+    res.json('World2');
 });
 
 router.get('/api/get/group_master', async (req, res) => {
@@ -17,5 +17,4 @@ router.get('/api/get/group_master', async (req, res) => {
     }
 
 });
-
-export default router;
+module.exports = router;

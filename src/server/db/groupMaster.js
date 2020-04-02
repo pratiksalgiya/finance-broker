@@ -1,7 +1,7 @@
-import { Connection } from './index';
-import { response } from 'express';
+const Connection = require('./index');
+const response = require('express');
 
-export const all = async () => {
+const all = async () => {
     return new Promise((resolve, reject) => {
         Connection.query('SELECT * from group_master', (err, results) => {
             if (err) {
@@ -12,6 +12,4 @@ export const all = async () => {
     });
 }
 
-export default {
-    all
-}
+module.exports = { all };
