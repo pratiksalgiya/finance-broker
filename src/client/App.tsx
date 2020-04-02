@@ -1,36 +1,66 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css'
+import Container from '@material-ui/core/Container';
+import { makeStyles } from '@material-ui/core/styles';
+import { toggleMenuDrawer } from './store/actions/menuDrawer';
+import MenuDrawer from './components/MenuDrawer';
+import MainContainer from './components/MainContainer.jsx'
+const useStyles = makeStyles((theme: any) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 
-class App extends React.Component<IAppProps, IAppState> {
-	constructor(props: IAppProps) {
-		super(props);
-		this.state = {
-			name: null
-		};
-	}
+function App(props: any) {
+  const classes = useStyles();
+  useEffect(() => {
+    fetch("http://localhost:9000/homepage")
+      .then(res => {
+        console.log("in homepage");
+      })
+  }, []);
 
-	async componentDidMount() {
-		try {
-			let r = await fetch('/api/hello');
-			let name = await r.json();
-			this.setState({ name });
-		} catch (error) {
-			console.log(error);
-		}
-	}
-
-	render() {
-		return (
-			<main className="container my-5">
-				<h1 className="text-primary text-center">Hello {this.state.name}!</h1>
-			</main>
-		);
-	}
+  return (
+    <div>
+      <AppBar >
+        <Toolbar>
+          <IconButton >
+            <MenuIcon onClick={props.toggleMenuDrawer} />
+          </IconButton>
+          <Typography>
+            Finance-Broker
+        </Typography>
+        </Toolbar>
+        <Container >
+          <MenuDrawer></MenuDrawer>
+        </Container>
+      </AppBar>
+      <MainContainer></MainContainer>
+    </div>
+  );
 }
 
-export interface IAppProps {}
+const mapStateToProps = (state: any) => ({
 
-export interface IAppState {
-	name: string;
+})
+
+const mapDispatchToProps = (dispatch: any) => {
+  return ({
+    toggleMenuDrawer: () => dispatch(toggleMenuDrawer())
+  });
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App)
