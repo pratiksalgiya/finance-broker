@@ -28,12 +28,23 @@ module.exports = {
             }
         },
         {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader']
+        },
+        {
             test: /\.scss$/,
             use: [
                 'style-loader',
                 'css-loader',
                 'sass-loader',
             ]
+        },
+        {
+            test: /\.(js|jsx)$/,
+            exclude: /node_modules/,
+            use: {
+                loader: "babel-loader"
+            }
         }
         ]
     },
@@ -44,7 +55,7 @@ module.exports = {
         port: 3000,
         open: true,
         proxy: {
-            '/api': 'http://localhost:8081'
+            '/api': 'http://192.168.0.102:8081'
         }
     },
     plugins: [
