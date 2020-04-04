@@ -15,7 +15,7 @@ function MenuDrawer(props) {
     }, []);
     console.log(props.isDrawerVisible, "in MenuDrawer", props);
     return (
-        props.isDrawerVisible && (<div className="sidebar">
+        props.isDrawerVisible && <div className="sidebar">
             {props.sideBarItems.map((ele, index) => {
                 return (<div><a onClick={() => props.expandMenu(index)}>{ele.title}</a>
                     {ele.isExpand && ele.subItem.map((subMenu, subItemIndex) => {
@@ -23,7 +23,7 @@ function MenuDrawer(props) {
                     })}</div>)
             })}
 
-        </div>)
+        </div>
     )
 }
 
